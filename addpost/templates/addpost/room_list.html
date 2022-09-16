@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+
+
+
+{% block content %}
+{% include "start/navbar.html" %}
+
+<form class = "search-bar" method="get">
+
+	<input type="text" name="q" placeholder="Search.." id="id_q">
+	
+</form>
+	
+<table>
+	
+	<thead>
+		<tr>
+			<th>Image</th>
+			<th>Location</th>
+			<th>Description</th>
+			<th>Price</th>
+			<th>Download</th>
+			<th>Delete</th>
+			<th>Update</th>
+
+		</tr>
+	</thead>
+	{% if rooms %}
+	<tbody>
+		{% for room in rooms %}
+		<tr>
+			<td>
+				<img src="{{room.pdf.url}}" width="200px" height="150px">		
+			</td>
+	
+			<td>{{room.location}}</td>
+			
+			<td>{{room.description}}</td>
+			
+			<td>{{room.price}}</td>
+			
+			<td><a href="{{room.pdf.url}}">Download PDF</a></td>
+
+			<td>
+				<form method="POST" action="{% url 'addpost:delete_room' room.pk %}">
+
+					{% csrf_token %}
+
+					<button type="submit" class="btn btn-primary btn-sm">Delete</button>
+					
+				</form>
+			</td>
+
+			<td>
+				<form method="POST" action="{% url 'addpost:update_room' room.pk %}">
+
+					{% csrf_token %}
+
+					<button type="submit" class="btn btn-primary btn-sm">Update</button>
+					
+				</form>
+			</td>
+		</tr>
+		{% endfor %}
+
+		{% else %}
+			<div class="container">
+				<div class="row">
+
+					<div class ="card-body">
+						<h1 class="card-title">NO RESULT!!</h1>
+					</div>
+				</div>
+				
+			</div>
+		{% endif %}
+			
+	</tbody>
+</table>
+
+<script type="text/javascript">document.getElementbyId('id_q').value = '{{query}}'</script>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/stylesheet.css' %}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+<nav>
+    <div class="logo">
+      <a href="#" >Room Finder</a>
+     </div>
+      <ul class="nav_items" >
+
+        <li><a href="/">Home</a></li>
+
+        {% if user.is_authenticated %}
+        <li><a href="/account">{{user.username}}</a></li>
+        <li><a href="/logout">Logout</a></li>
+        <li><a href="/addpost">Add Post</a></li>
+        <li><a href="/room">Room List</a></li>
+        
+        {% else %}
+      	<li><a href="/register">Register</a></li>
+      	<li><a href="/login">Login</a></li>
+        
+       {% endif %}
+      </ul>
+</nav>
