@@ -1,2 +1,2 @@
-# handwriting-recognition
- Scans the handwritten characters in the image and display in the computer screen.
+# room-finder 
+ User could view the rooms available and see their prices and location then able to book it.
